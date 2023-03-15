@@ -20,14 +20,14 @@ interface FixerApiService {
     ): LatestRatesResponse?
 
     @GET("{date}")
-    fun getHistoricalRates(
+    suspend fun getHistoricalRates(
         @Path("date") date: String?,
         @Query("base") baseCurrency: String?,
         @Query("symbols") symbols: String?
     ): HistoricalRatesResponse?
 
     @GET("convert")
-    fun convertCurrency(
+    suspend fun convertCurrency(
         @Query("from") fromCurrency: String?,
         @Query("to") toCurrency: String?,
         @Query("amount") amount: Double
