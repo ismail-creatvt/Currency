@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Currency</string>
+    <string name="details">Details</string>
+    <string name="to">To</string>
+    <string name="from">From</string>
+    <string name="swap_currencies">Swap Currencies</string>
+    <string name="from_field">From field</string>
+    <string name="to_field">To field</string>
+</resources>

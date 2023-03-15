@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="viewModel"
+            type="com.ismail.creatvt.currency.ui.currencyconverter.CurrencyConversionViewModel" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.currencyconverter.CurrencyConversionActivity">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                app:cardCornerRadius="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:strokeWidth="1dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <Spinner
+                        android:id="@+id/spinner"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="16dp"
+                        android:background="@drawable/spinner_background"
+                        app:currencySymbols="@{viewModel.currencies}"
+                        app:layout_constraintEnd_toStartOf="@+id/imageView"
+                        app:layout_constraintStart_toStartOf="@+id/textView"
+                        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+                    <TextView
+                        android:id="@+id/textView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="32dp"
+                        android:labelFor="@+id/spinner"
+                        android:text="@string/from"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/textView2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:labelFor="@+id/spinner2"
+                        android:text="@string/to"
+                        app:layout_constraintStart_toStartOf="@+id/spinner2"
+                        app:layout_constraintTop_toTopOf="@+id/textView" />
+
+                    <Spinner
+                        android:id="@+id/spinner2"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="16dp"
+                        android:background="@drawable/spinner_background"
+                        app:currencySymbols="@{viewModel.currencies}"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/imageView"
+                        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/imageView"
+                        style="@style/Widget.Material3.Button.IconButton.Filled.Tonal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:clickable="true"
+                        android:contentDescription="@string/swap_currencies"
+                        android:focusable="true"
+                        app:backgroundTint="@color/black"
+                        app:icon="@drawable/baseline_swap_horiz_24"
+                        app:iconTint="@color/white"
+                        app:layout_constraintBottom_toBottomOf="@+id/spinner2"
+                        app:layout_constraintEnd_toStartOf="@+id/spinner2"
+                        app:layout_constraintStart_toEndOf="@+id/spinner"
+                        app:layout_constraintTop_toTopOf="@+id/spinner" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/button"
+                        android:layout_width="0dp"
+                        android:layout_height="70dp"
+                        android:layout_marginTop="24dp"
+                        android:layout_marginBottom="32dp"
+                        android:text="@string/details"
+                        app:cornerRadius="16dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="@+id/editTextNumberDecimal2"
+                        app:layout_constraintStart_toStartOf="@+id/editTextNumberDecimal"
+                        app:layout_constraintTop_toBottomOf="@+id/editTextNumberDecimal" />
+
+                    <EditText
+                        android:id="@+id/editTextNumberDecimal"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:background="@drawable/edit_text_background"
+                        android:contentDescription="@string/from_field"
+                        android:ems="10"
+                        android:importantForAutofill="no"
+                        android:inputType="numberDecimal"
+                        android:maxLength="10"
+                        app:layout_constraintEnd_toStartOf="@+id/editTextNumberDecimal2"
+                        app:layout_constraintStart_toStartOf="@+id/spinner"
+                        app:layout_constraintTop_toBottomOf="@+id/spinner" />
+
+                    <TextView
+                        android:id="@+id/editTextNumberDecimal2"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginStart="16dp"
+                        android:background="@drawable/edit_text_background"
+                        android:contentDescription="@string/to_field"
+                        app:layout_constraintBottom_toBottomOf="@+id/editTextNumberDecimal"
+                        app:layout_constraintEnd_toEndOf="@+id/spinner2"
+                        app:layout_constraintStart_toEndOf="@+id/editTextNumberDecimal"
+                        app:layout_constraintTop_toTopOf="@+id/editTextNumberDecimal" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+</layout>
