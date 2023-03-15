@@ -1,14 +1,20 @@
 package com.ismail.creatvt.currency.data.repository
 
-import com.ismail.creatvt.currency.data.model.ConversionResponse
 import com.ismail.creatvt.currency.data.model.CurrencyRates
+import com.ismail.creatvt.currency.data.model.HistoricalData
+import com.ismail.creatvt.currency.data.model.HistoricalRatesResponse
 import com.ismail.creatvt.currency.data.remote.FixerApiService
 import com.ismail.creatvt.currency.di.CoroutineScopeProvider
+import com.ismail.creatvt.currency.utils.DATE_FORMAT
 import com.ismail.creatvt.currency.utils.TOP_10_CURRENCY_CODES
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers.IO
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
+import java.util.*
 import javax.inject.Inject
+import kotlin.collections.ArrayList
 
 class ConversionRepository @Inject constructor(
     private val fixerApiService: FixerApiService,
@@ -47,27 +53,4 @@ class ConversionRepository @Inject constructor(
         }
     }
 
-    fun getCountries(
-        baseCurrency: String,
-        value: Double,
-        onResponse: (List<CurrencyRates>) -> Unit,
-        onError: (String) -> Unit
-    ) {
-        coroutineScopeProvider.coroutineScope.launch {
-            try {
-                onResponse(
-                    fixerApiService.getLatestRates(
-                        baseCurrency,
-                        TOP_10_CURRENCY_CODES
-                    )?.rates?.map {
-                        CurrencyRates(
-                            it.key, it.value, value
-                        )
-                    } ?: throw Exception("Data not available")
-                )
-            } catch (e: Exception) {
-                onError(e.message?:"Unknown Error")
-            }
-        }
-    }
 }

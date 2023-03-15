@@ -6,6 +6,12 @@
         <variable
             name="viewModel"
             type="com.ismail.creatvt.currency.ui.details.DetailsViewModel" />
+        <variable
+            name="historicalAdapter"
+            type="com.ismail.creatvt.currency.ui.details.historicaldata.HistoricalDataAdapter" />
+        <variable
+            name="otherCountriesAdapter"
+            type="com.ismail.creatvt.currency.ui.details.othercountries.OtherCountriesAdapter" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -28,6 +34,8 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginTop="16dp"
+            app:adapter="@{historicalAdapter}"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/guideline"
             app:layout_constraintStart_toStartOf="parent"
@@ -36,6 +44,8 @@
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="0dp"
             android:layout_height="0dp"
+            app:adapter="@{otherCountriesAdapter}"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/guideline"
